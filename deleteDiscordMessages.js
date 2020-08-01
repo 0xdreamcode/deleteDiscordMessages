@@ -299,14 +299,13 @@
                         });
                         lastPing = (Date.now() - s);
                         avgPing = (avgPing*0.9) + (lastPing*0.1);
-                        delCount++;
                     } catch (err) {
                         log.error('Edit request throwed an error:', err);
                         log.verb('Related object:', redact(JSON.stringify(message)));
                         failCount++;
                     }
 
-
+			await wait(deleteDelay);
 					// Then dlete the message
                     try {
 
