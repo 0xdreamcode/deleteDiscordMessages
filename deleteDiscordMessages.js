@@ -1,4 +1,9 @@
 (function () {
+
+	function getRandomString() {
+    	return	Math.random().toString(36).substring(7);
+	}
+
     let stop;
     let popup;
     popup = window.open('', '', `top=0,left=${screen.width-800},width=850,height=${screen.height}`);
@@ -289,7 +294,8 @@
                         const API_EDIT_URL = `https://discordapp.com/api/v6/channels/${message.channel_id}/messages/${message.id}`;
                         resp = await fetch(API_EDIT_URL, {
                             headers,
-                            method: 'PATCH'
+                            method: 'PATCH',
+							body: JSON.stringify({ content: getRandomString() })
                         });
                         lastPing = (Date.now() - s);
                         avgPing = (avgPing*0.9) + (lastPing*0.1);
